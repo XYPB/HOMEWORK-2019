@@ -105,8 +105,9 @@ const pu，const s，pud是vec的指针，sp是s的指针
 这个时候s的指针到底了吗
 到了说明匹配成功，return true
 每到说明使不得就return false*/
+// have a try
 
-	int main()
+int main()
 {
 	vector<int> a(3, 1);
 	string a[5] = {"a"};
