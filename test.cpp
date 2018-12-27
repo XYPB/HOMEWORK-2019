@@ -106,6 +106,7 @@ const pu，const s，pud是vec的指针，sp是s的指针
 到了说明匹配成功，return true
 每到说明使不得就return false*/
 // have a try
+// another try :)
 
 int main()
 {
