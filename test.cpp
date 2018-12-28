@@ -107,7 +107,11 @@ const pu，const s，pud是vec的指针，sp是s的指针
 每到说明使不得就return false*/
 // have a try
 // another try :)
+<<<<<<< HEAD
 // 哎嘿o(*￣▽￣*)o
+=======
+// A try about different branch;
+>>>>>>> van
 
 int main()
 {
