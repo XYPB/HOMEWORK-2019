@@ -86,6 +86,34 @@ bool regg(string s, string p)
 	return reg(pu, s, pup, sp);
 }
 
+string longestCommonPrefix(vector<string>& strs) 
+{
+	bool isSame = 1;
+	string lcp = "";
+	int sp = 0, maxlen = 0;
+	for (int i = 0; i < (int)strs.size(); i++)
+		maxlen = maxlen > (int)strs[i].size() ? maxlen : strs[i].size();
+	while (sp < maxlen && isSame)
+	{
+		for (int i = 0; i < (int)strs.size(); i++)
+		{
+			if (strs[i].size() == 0)
+				return "";
+			if (strs[i][sp] != strs[0][sp])
+			{
+				isSame = 0;
+				break;
+			}
+		}
+		if (isSame)
+		{
+			lcp.push_back(strs[0][sp]);
+			sp++;
+		}
+	}
+	return lcp;
+}
+
 	/*要做什么
 对这个vector深搜
 怎么深搜
@@ -113,7 +141,10 @@ const pu，const s，pud是vec的指针，sp是s的指针
 int main()
 {
 	vector<int> a(3, 1);
-	string a[5] = {"a"};
+	vector<string> x;
+	x.push_back("abca");
+	x.push_back("abc");
+	string a = longestCommonPrefix(x);
 	cout << a[2] << endl;
 	bool b = regg("aab", "c*a*b");
 	return 0;
