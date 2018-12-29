@@ -88,6 +88,8 @@ ListNode* removeNthFromEnd(ListNode* head, int n)
     if (length == 1)
         return NULL;
     int trueN = length - n + 1;
+    if (trueN == 1)
+        return head->next;
     ListNode* bkTail,* bkHead;
     p = head;
     for (int i = 1; i < trueN + 1; i++)
