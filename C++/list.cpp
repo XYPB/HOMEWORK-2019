@@ -105,16 +105,55 @@ ListNode* removeNthFromEnd(ListNode* head, int n)
     return head;
 }
 
+ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) 
+{
+    ListNode* ansH = new ListNode(0);
+    ListNode* ans = ansH;
+    while (l1 != NULL || l2 != NULL)
+    {
+        if (l1 == NULL)
+        {
+            ans->next = new ListNode(l2->val);
+            l2 = l2->next;
+        }
+        else if (l2 == NULL)
+        {
+            ans->next = new ListNode(l1->val);
+            l1 = l1->next;
+        }
+        else 
+        {
+            if (l1->val < l2->val)
+            {
+                ans->next = new ListNode(l1->val);
+                l1 = l1->next;
+            }
+            else
+            {
+                ans->next = new ListNode(l2->val);
+                l2 = l2->next;
+            }
+        }
+        ans = ans->next;
+    }
+    ansH->next = ans->next;
+    return ansH->next;
+}
+
 int main()
 {
 	ListNode *l1;
 	ListNode *l2;
-	l2 = new ListNode(9);
-	l1 = new ListNode(3);
+    struct ListNode l3(0);
+    ListNode l4(0);
+    l2 = new ListNode(1);
+	l1 = new ListNode(1);
 	l2->next = new ListNode(2);
-	l1->next = new ListNode(7);
+	l1->next = new ListNode(3);
+    l2->next->next = new ListNode(4);
+	l1->next->next = new ListNode(4);
     ListNode *l;
-    l = new ListNode(1);
+    l = mergeTwoLists(l1, l2);
     l->next = new ListNode(2);
     //
     ListNode *x = removeNthFromEnd(l, 2);
