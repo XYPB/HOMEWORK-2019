@@ -76,6 +76,33 @@ ListNode* Sum(ListNode* l1, ListNode* l2)
         return mus;
 }
 
+ListNode* removeNthFromEnd(ListNode* head, int n) 
+{
+    int length = 1;
+    ListNode* p = head;
+    while (p->next != NULL)
+    {
+        length++;
+        p = p->next;
+    }
+    if (length == 1)
+        return NULL;
+    int trueN = length - n + 1;
+    ListNode* bkTail,* bkHead;
+    p = head;
+    for (int i = 1; i < trueN + 1; i++)
+    {
+        if (i == trueN - 1)
+            bkTail = p;
+        else if (i == trueN)
+            bkHead = p->next;
+        else
+            p = p->next;
+    }
+    bkTail->next = bkHead->next;
+    return head;
+}
+
 int main()
 {
 	ListNode *l1;
@@ -84,7 +111,11 @@ int main()
 	l1 = new ListNode(3);
 	l2->next = new ListNode(2);
 	l1->next = new ListNode(7);
-	//
-	ListNode *a = Sum(l1, l2);
+    ListNode *l;
+    l = new ListNode(1);
+    l->next = new ListNode(2);
+    //
+    ListNode *x = removeNthFromEnd(l, 2);
+    ListNode *a = Sum(l1, l2);
 	return 0;
 }
