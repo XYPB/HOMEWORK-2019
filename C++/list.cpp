@@ -113,49 +113,63 @@ ListNode* mergeTwoLists(ListNode* l1, ListNode* l2)
     {
         if (l1 == NULL)
         {
-            ans->next = new ListNode(l2->val);
+            ans->next = l2;
             l2 = l2->next;
         }
         else if (l2 == NULL)
         {
-            ans->next = new ListNode(l1->val);
+            ans->next = l1;
             l1 = l1->next;
         }
         else 
         {
             if (l1->val < l2->val)
             {
-                ans->next = new ListNode(l1->val);
+                ans->next = l1;
                 l1 = l1->next;
             }
             else
             {
-                ans->next = new ListNode(l2->val);
+                ans->next = l2;
                 l2 = l2->next;
             }
         }
         ans = ans->next;
     }
-    ansH->next = ans->next;
     return ansH->next;
+}
+
+ListNode* mergeKLists(vector<ListNode*>& lists) 
+{
+    vector<ListNode*> nlists;
+    while (lists.size() > 1)
+    {
+        for (int i = 0; i < (int)lists.size() / 2; i++)
+            nlists.push_back(mergeTwoLists(lists[2 * i], lists[2 * i + 1]));
+        if (lists.size() % 2 == 1)
+            nlists.push_back(lists[lists.size() - 1]);
+        lists = nlists;
+        nlists.clear();
+    }
+    return lists[0];
 }
 
 int main()
 {
 	ListNode *l1;
 	ListNode *l2;
-    struct ListNode l3(0);
-    ListNode l4(0);
     l2 = new ListNode(1);
 	l1 = new ListNode(1);
-	l2->next = new ListNode(2);
+	l2->next = new ListNode(4);
 	l1->next = new ListNode(3);
-    l2->next->next = new ListNode(4);
+    l2->next->next = new ListNode(5);
 	l1->next->next = new ListNode(4);
     ListNode *l;
-    l = mergeTwoLists(l1, l2);
-    l->next = new ListNode(2);
+    l = new ListNode(2);
+    l->next = new ListNode(6);
     //
+    vector<ListNode *> b = {l1, l2, l};
+    ListNode *ll = mergeKLists(b);
     ListNode *x = removeNthFromEnd(l, 2);
     ListNode *a = Sum(l1, l2);
 	return 0;
