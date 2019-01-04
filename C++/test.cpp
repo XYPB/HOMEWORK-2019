@@ -106,10 +106,35 @@ const pu，const s，pud是vec的指针，sp是s的指针
 到了说明匹配成功，return true
 每到说明使不得就return false*/
 
+int divide(int dividend, int divisor) 
+{
+	if(divisor == 0 || (dividend==INT_MIN && divisor==-1)) return INT_MAX;
+	int sign = ((dividend<0)^(divisor<0))?-1:1;
+	long long res = 0;
+	
+	long long div = labs(dividend);
+	long long dis = labs(divisor);
+	
+	while(div >= dis){
+		long long mult = 1;
+		long long temp = dis;
+		
+		while(div >= (temp << 1)){
+			temp <<= 1;
+			mult <<= 1;
+		}
+		
+		div = div - temp;
+		res += mult;
+	}
+	
+	return res*sign;
+}
+
 	int main()
 {
 	vector<int> a(3, 1);
-	string a[5] = {"a"};
+	int xxx = divide(100, 25);
 	cout << a[2] << endl;
 	bool b = regg("aab", "c*a*b");
 	return 0;
