@@ -131,8 +131,33 @@ int divide(int dividend, int divisor)
 	return res*sign;
 }
 
+void nextPermutation(vector<int>& nums) 
+{
+	int l = nums.size() - 1;
+	if (nums.size() <= 1)
+		return;
+	for (; l > 0; l--)
+		if (nums[l] > nums[l - 1])
+			break;
+	if (l == 0)
+	{
+		sort(nums.begin(), nums.end());
+		return;
+	}
+	int r = l--;
+	while (r < (int)nums.size() 
+	&& nums[l] < nums[r]) 
+		r++;
+	r--;
+	swap(nums[l], nums[r]);
+	sort(nums.begin() + l + 1, nums.end());
+	return;
+}
+
 	int main()
 {
+	vector<int> nums = {1, 2, 4, 3, 5, 7, 6};
+	nextPermutation(nums);
 	vector<int> a(3, 1);
 	int xxx = divide(100, 25);
 	cout << a[2] << endl;
