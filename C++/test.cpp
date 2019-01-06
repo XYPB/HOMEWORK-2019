@@ -2,6 +2,7 @@
 #include<string>
 #include<regex>
 #include<algorithm>
+#include<stack>
 using namespace std;
 
 struct PatternUnit
@@ -154,9 +155,69 @@ void nextPermutation(vector<int>& nums)
 	return;
 }
 
-	int main()
+bool isVal(string s, int l, int r)
+{
+    stack<char> paras;
+    for (int i = l; i <= r; i++)
+    {
+        if (s[i] == '(')
+            paras.push('(');
+        else if (s[i] == ')')
+        {
+			if (paras.empty())
+				return false;
+			else if (paras.top() == '(')
+				paras.pop();
+            else
+                return false;
+        }
+    }
+    if (paras.empty())
+        return true;
+    else
+        return false;
+}
+
+int longestValidParentheses(string s) 
+{
+	int lvp = 0;
+	stack<int> paras({0});
+	for (int i = 1; i <= s.size(); i++)
+	{
+		if (s[i - 1] == '(')
+			paras.push(i);
+		else if (paras.size() > 1)
+		{
+			paras.pop();
+			lvp = max(lvp, i - paras.top());
+		}
+		else if (paras.size() == 1)
+		{
+			paras.pop();
+			paras.push(i);
+		}
+	}
+	return lvp;
+}
+
+int longestValidParentheses(string s) 
+{
+	int lvp = 0;
+	for (int l = 0; l < (int)s.size(); l++)
+	{
+		for (int r = (int)s.size() - 1; r > l; r--)
+		{
+			if (isVal(s, l, r))
+				lvp = max(lvp, r - l + 1);
+		}
+	}
+	return lvp;
+}
+
+int main()
 {
 	vector<int> nums = {1, 2, 4, 3, 5, 7, 6};
+	int num = longestValidParentheses(")()())");
 	nextPermutation(nums);
 	vector<int> a(3, 1);
 	int xxx = divide(100, 25);
