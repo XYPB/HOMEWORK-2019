@@ -1,3 +1,5 @@
+[TOC]
+
 # 这是大标题
 ## 这是小标题
 ## 这也是个小标题
@@ -29,7 +31,7 @@ int main()
 {
 	int sd = 0;
 	int dsd = 1;
-
+	cout<< sd << dsd <<endl;
 	return 0;
 }
 ```
@@ -44,8 +46,22 @@ $$\sqrt[n]{a^n}$$
 
 $$\sum_{k=0}^{\infty}\sqrt[n]{a^n}$$
 
-$$\int f(x)\;dx$$
+$$\int_0^{100} f(x)\;dx$$
 
 $$\small\int_a^b \alpha^n$$
 
+- 试试表格
+
+|a|b|c|
+|-|-|:-:|
+| 1 | 2 | 3 |
+|1| 2|300
+
+- 以及化学式
+
+$$2H_2O \xlongequal{Electric} 2H_2\uparrow + O_2\uparrow$$
+
+```mermaid
+graph LR
+	A --> B;
 
