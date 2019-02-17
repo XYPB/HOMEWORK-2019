@@ -26,7 +26,6 @@
 ```C++
 #include<cstdlib>
 using namespace std
-
 int main()
 {
 	int sd = 0;
@@ -39,8 +38,6 @@ int main()
 ***妙哇***
 
 $$a_1^2 + b_1^2$$
-
-$$\frac{a_1 + b_1}{2}$$
 
 $$\sqrt[n]{a^n}$$
 
@@ -61,7 +58,4 @@ $$\small\int_a^b \alpha^n$$
 
 $$2H_2O \xlongequal{Electric} 2H_2\uparrow + O_2\uparrow$$
 
-```mermaid
-graph LR
-	A --> B;
 
