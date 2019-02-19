@@ -6,11 +6,9 @@ int listt[9][2] = {{0,0},{0,3},{0,6},{3,0},{3,3},{3,6},{6,0},{6,3},{6,6}};
 bool solver(vector<vector<char>>& board, int pos)
 {
     if (pos >= 81)
-    {
         return true;
-    }
-    while (board[pos / 9][pos - (pos / 9) * 9] != '.' && pos < 80)
-        ++pos;
+    /*while (board[pos / 9][pos - (pos / 9) * 9] != '.' && pos < 80)
+        ++pos;*/
     int row = pos / 9;
     int col = pos - row * 9;
     bool validNum[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
@@ -45,13 +43,22 @@ bool solver(vector<vector<char>>& board, int pos)
             break;
         }
     }
-	for (int i = 1; i <= 9; i++)
-	{
-        if (validNum[i])
+    if (board[row][col] != '.')
+    {
+        if (solver(board, pos + 1))
+            return true;
+    }
+    else
+    {
+        for (int i = 1; i <= 9; i++)
         {
-            board[row][col] = i +'0';
-            if (solver(board, pos + 1))
-                return true;
+            if (validNum[i])
+            {
+                board[row][col] = i +'0';
+                if (solver(board, pos + 1))
+                    return true;
+                board[row][col] = '.';
+            }
         }
     }
     return false;
